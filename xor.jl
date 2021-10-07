@@ -1,26 +1,33 @@
 using Plots, Flux
 
-
+# The training data X and the output y
 X = [0f0 0 1 1; 0 1 0 1]
 y = [0f0 1 1 0]
 
+# Our model has 2 input, 2 neurons in hidden layer and 1 output. The activation function is a sigmoid
 xor_model = Chain(
     Dense(2, 2, sigmoid),
     Dense(2, 1, sigmoid)
 )
 
+# Check our model
 params(xor_model)
 
+# Check our inputs and output
 params(xor_model)[1]
 params(xor_model)[3]
 
+# Implements a loss functions using mse
 loss_fn(a, b) = Flux.mse(xor_model(a), b) 
 
+# We will use ADAM optimizer
 opt = ADAM(0.001)
 
+# Number of Epochs to run
 N = 5000
 loss = zeros(N)
 
+# Train the model
 for i in 1:N
     Flux.train!(loss_fn, params(xor_model), [(X, y)], opt)
     loss[i] = loss_fn(X, y)
@@ -29,8 +36,9 @@ for i in 1:N
     end
 end
 
-
+# Print loss and predict our data
 loss_fn(X, y)
 xor_model(X)
 
+# Plot the loss data
 plot(1:N, loss, xlabel="Epochs", ylabel="Loss (mse)")
