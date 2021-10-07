@@ -3,6 +3,7 @@ This is a simple example showing how to solve a xor gate problem using  [flux pa
 The example uses a model with 2 input, 2 neurons in hidden layer and 1 neuron on output. The model is treined with 5K epochs and learning rate 0.01. The results below are precise.
 
 * Loss plot
+
 ![](thumbs/loss.png)
 
 
