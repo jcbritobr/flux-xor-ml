@@ -1,6 +1,7 @@
+# %% Import packages
 using Plots, Flux
 
-# The training data X and the output y
+# %% The training data X and the output y
 X = [0f0 0 1 1; 0 1 0 1]
 y = [0f0 1 1 0]
 
@@ -36,9 +37,10 @@ for i in 1:N
     end
 end
 
-# Print loss and predict our data
+# %% Print loss and predict our data
 loss_fn(X, y)
 xor_model(X)
 
 # Plot the loss data
-plot(1:N, loss, xlabel="Epochs", ylabel="Loss (mse)")
+loss_plt = plot(1:N, loss, xlabel="Epochs", legend=:none, ylabel="Loss (mse)");
+display("image/png", loss_plt)
